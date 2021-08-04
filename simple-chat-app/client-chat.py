@@ -28,7 +28,7 @@ def recv_data(s):
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description="Simple Chat Client Program.")
-    parser.add_argument("-a", "--ipaddress", help="IP address of target server (Default: 127.0.0.1)")
+    parser.add_argument("-i", "--ipaddress", help="IP address of target server (Default: 127.0.0.1)")
     parser.add_argument("-p", "--port", help="Listening port number of target server (Default: 4444)")
     parser.add_argument("-u", "--username", help="The name used during connection")
 
@@ -36,7 +36,7 @@ if __name__=="__main__":
     if args.ipaddress:
         address=args.ipaddress
     if args.port:
-        port=args.port
+        port=int(args.port)
     if args.username:
         username=args.username
 
