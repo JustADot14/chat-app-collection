@@ -10,8 +10,22 @@ clientname = "Received"
 
 def recv_data(conn):
     while True:
-        data=conn.recv(1024)
-        print(f"\n{clientname}: {data.decode()}\n{username}: ", end="")
+        try:
+            data=conn.recv(1024)
+            print(f"\n{clientname}: {data.decode()}\n{username}: ", end="")
+        except ConnectionResetError:
+            if clientname!="Received":
+                print(f"\nClosed by {clientname}")
+            else:
+                print("\nClosed by other user.")
+            break
+        except ConnectionAbortedError:
+            print(f"\nConnection closed by {username.lower()}.")
+            break
+    conn.close()
+    print("Program Exited")
+    sys.exit()
+            
 
 if __name__=="__main__":
 
@@ -47,6 +61,8 @@ if __name__=="__main__":
             conn.send(bytes(username, encoding="UTF-8"))
             clientname=conn.recv(1024)
             clientname=clientname.decode()
+            if clientname=="Me":
+                clientname="Received"
             recv_ = threading.Thread(target=recv_data, args=(conn,))
             recv_.start()
             while True:
