@@ -20,8 +20,8 @@ Running server: chat-app.py --server<br>
 Running client: chat-app.py --client
 
 <h4>Running with optional parameters</h4>
-Running server: chat-app.py --server -a [IP Address] -p [Port Number] -u [Username]<br>
-Running client: chat-app.py --client -a [IP Address] -p [Port Number] -u [Username]
+Running server: chat-app.py --server -i [IP Address] -p [Port Number] -u [Username]<br>
+Running client: chat-app.py --client -i [IP Address] -p [Port Number] -u [Username]
 
 <h2>Running Using chat-server.py and chat-client.py</h2>
 <h4>Running in default mode</h4>
@@ -29,5 +29,5 @@ Running server: chat-server.py<br>
 Running client: chat-client.py
 
 <h4>Running with optional parameters</h4>
-Running server: chat-server.py -a [IP Address] -p [Port Number] -u [Username]<br>
-Running client: chat-client.py -a [IP Address] -p [Port Number] -u [Username]
+Running server: chat-server.py -i [IP Address] -p [Port Number] -u [Username]<br>
+Running client: chat-client.py -i [IP Address] -p [Port Number] -u [Username]
