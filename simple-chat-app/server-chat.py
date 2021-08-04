@@ -30,7 +30,7 @@ def recv_data(conn):
 if __name__=="__main__":
 
     parser = argparse.ArgumentParser(description="Simple Chat Server Program.")
-    parser.add_argument("-a", "--ipaddress", help="IP address of server (Default: 127.0.0.1)")
+    parser.add_argument("-i", "--ipaddress", help="IP address of server (Default: 127.0.0.1)")
     parser.add_argument("-p", "--port", help="Port number to listen (Default: 4444)")
     parser.add_argument("-u", "--username", help="The name used during connection")
 
@@ -38,7 +38,7 @@ if __name__=="__main__":
     if args.ipaddress:
         address=args.ipaddress
     if args.port:
-        port=args.port
+        port=int(args.port)
     if args.username:
         username=args.username
     try:
@@ -84,4 +84,3 @@ if __name__=="__main__":
         sys.exit()
     finally:
         s.close()
-
