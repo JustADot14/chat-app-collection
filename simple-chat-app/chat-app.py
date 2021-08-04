@@ -11,8 +11,21 @@ othername = "Received"
 
 def recv_data_thread(socketObj):
     while True:
-        data=socketObj.recv(1024)
-        print(f"\n{othername}: {data.decode()}\n{username}: ", end="")
+        try:
+            data=socketObj.recv(1024)
+            print(f"\n{othername}: {data.decode()}\n{username}: ", end="")
+        except ConnectionResetError:
+            if othername!="Received":
+                print(f"\nClosed by {othername}")
+            else:
+                print("\nClosed by other user.")
+            break
+        except ConnectionAbortedError:
+            print(f"\nConnection closed by {username.lower()}.")
+            break
+    socketObj.close()
+    print("Program Exited")
+    sys.exit()
 
 
 def server_func(address, port, username):
@@ -41,6 +54,8 @@ def server_func(address, port, username):
             global othername 
             othername = conn.recv(1024)
             othername = othername.decode()
+            if othername=="Me":
+                othername="Received"
             recv_ = threading.Thread(target=recv_data_thread, args=(conn,))
             recv_.start()
             while True:
@@ -78,6 +93,8 @@ def client_func(address, port, username):
         global othername
         othername = s.recv(1024)
         othername = othername.decode()
+        if othername=="Me":
+            othername="Received"
         s.send(bytes(username, encoding="UTF-8"))
         recv_ = threading.Thread(target=recv_data_thread, args=(s,))
         recv_.start()
