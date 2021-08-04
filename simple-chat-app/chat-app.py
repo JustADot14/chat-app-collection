@@ -123,7 +123,7 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser(description="Simple Chat Program.")
     parser.add_argument("--server", help="Create a server", action="store_true")
     parser.add_argument("--client", help="Create a client", action="store_true")
-    parser.add_argument("-a", "--ipaddress", help="IP address (Default: 127.0.0.1)")
+    parser.add_argument("-i", "--ipaddress", help="IP address (Default: 127.0.0.1)")
     parser.add_argument("-p", "--port", help="Por number (Default: 4444)")
     parser.add_argument("-u", "--username", help="The name used during connection")
     
@@ -132,7 +132,7 @@ if __name__=="__main__":
     if args.ipaddress:
         address=args.ipaddress
     if args.port:
-        port=args.port
+        port=int(args.port)
     if args.username:
         username=args.username
 
