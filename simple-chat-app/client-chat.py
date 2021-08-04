@@ -10,8 +10,21 @@ servername = "Received"
 
 def recv_data(s):
     while True:
-        data=s.recv(1024)
-        print(f"\n{servername}: {data.decode()}\n{username}: ", end="")
+        try:
+            data=s.recv(1024)
+            print(f"\n{servername}: {data.decode()}\n{username}: ", end="")
+        except ConnectionResetError:
+            if servername!="Received":
+                print(f"\nClosed by {servername}")
+            else:
+                print("\nClosed by other user.")
+            break
+        except ConnectionAbortedError:
+            print(f"\nConnection closed by {username.lower()}.")
+            break
+    s.close()
+    print("Program Exited")
+    sys.exit()
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description="Simple Chat Client Program.")
@@ -35,6 +48,8 @@ if __name__=="__main__":
         print()
         servername=s.recv(1024)
         servername=servername.decode()
+        if servername=="Me":
+            servername="Received"
         s.send(bytes(username, encoding="UTF-8"))
         recv_ = threading.Thread(target=recv_data, args=(s,))
         recv_.start()
