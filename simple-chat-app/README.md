@@ -23,7 +23,7 @@ Running client: chat-app.py --client
 Running server: chat-app.py --server -a [IP Address] -p [Port Number] -u [Username]<br>
 Running client: chat-app.py --client -a [IP Address] -p [Port Number] -u [Username]
 
-<h2>Running Using chat-server.py and chat-client</h2>
+<h2>Running Using chat-server.py and chat-client.py</h2>
 <h4>Running in default mode</h4>
 Running server: chat-server.py<br>
 Running client: chat-client.py
