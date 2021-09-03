@@ -8,7 +8,6 @@
 import socket
 import random
 import threading
-import time
 
 connection_list=[]
 
@@ -31,7 +30,6 @@ def forward_message(get_user_id, recv_msg):
     for i in range(len(connection_list)):
         if connection_list[i][0] != get_user_id and connection_list[i][4]=='1':
             conn_list.append(connection_list[i][5])
-            # print(conn_list)
     for conn in conn_list:
         conn.send(recv_msg)
 
@@ -64,8 +62,6 @@ def connection_listener(address, port, modified_username):
             break
         else:
             forward_message(get_user_id, recv_msg)
-        #forward_msg = threading.Thread(target=forward_message, args=(get_user_id, recv_msg))
-        #forward_msg.start()
 
 
 # listens for get_initial_connection from client
@@ -84,7 +80,6 @@ def main_listener(address, port, username):
     print("[+] Sent: Username: " + modified_username + ", Port number: " + str(random_port_number))
     connection_list.append([user_id, modified_username, addr[0], random_port_number, '1'])
     print("[+] Added: New client info in connection list\n")
-    # print(connection_list)
     new_connection = threading.Thread(target=connection_listener, args=(addr[0], random_port_number, modified_username))
     new_connection.start()
 
