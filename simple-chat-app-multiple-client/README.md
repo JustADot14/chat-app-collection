@@ -3,7 +3,7 @@ Simple Chat App (Multi Client)
 <h2>Default Values</h2>
 IP address: 127.0.0.1<br>
 Port: 4444<br>
-Username: User<br>
+Username: User<br><br>
 
 You can edit above values in the script. But you need to edit both client and server script.<br>
 
@@ -12,7 +12,7 @@ Tested on Windows.
 <h2>How to Use</h2>
 <h4>Default Mode</h4>
 Running server: python3 multiple-chat-app-server.py<br>
-Running client: python3 multiple-chat-app-client.py<br>
+Running client: python3 multiple-chat-app-client.py<br><br>
 
 To exit client connection press Ctrl+C.<br>
 
