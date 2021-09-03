@@ -7,7 +7,6 @@
 
 import socket
 import threading
-import time
 
 def message_listener(socket_conn, get_username):
     while True:
