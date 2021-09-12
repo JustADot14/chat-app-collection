@@ -87,4 +87,3 @@ if __name__ == "__main__":
     app.mainloop()
     # gui_draw()
     
-test
